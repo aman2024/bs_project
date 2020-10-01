@@ -53,6 +53,13 @@ async def on_ready():
 
     print ("{usr} is connected to the following guild:".format(usr=client.user))
     print ("{name}(id: {id})".format(name=guild.name,id=guild.id))
+    insert_str = "CREATE table search_for (search varchar(1000) UNIQUE) ;"
+
+    try:
+        cursor.execute(insert_str)
+    except Exception as err:
+        print("Oops! An exception has occured:", err)
+    connection.commit()
 
 @client.event
 async def on_message(message):
