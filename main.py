@@ -3,12 +3,12 @@ import discord
 from dotenv import load_dotenv
 from googlesearch import search
 import psycopg2
-# from flask import Flask
-# from os import environ
-#
-#
-# app = Flask(__name__)
-# app.run(environ.get('PORT'))
+from flask import Flask
+from os import environ
+
+
+app = Flask(__name__)
+app.run(environ.get('PORT'))
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
