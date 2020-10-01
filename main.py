@@ -4,11 +4,21 @@ from dotenv import load_dotenv
 from googlesearch import search
 import psycopg2
 from flask import Flask
-from os import environ
+# from os import environ
 
+#
+# app = Flask(__name__)
+# app.run(environ.get('PORT'))
 
 app = Flask(__name__)
-app.run(environ.get('PORT'))
+
+@app.route("/")
+def hello():
+    return "Hello from Python!"
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
