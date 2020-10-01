@@ -3,50 +3,20 @@ import discord
 from dotenv import load_dotenv
 from googlesearch import search
 import psycopg2
-from flask import Flask
 from os import environ
-
-#
-# app = Flask(__name__)
-# app.run(environ.get('PORT'))
-
-# app = Flask(__name__)
-#
-# @app.route("/")
-# def hello():
-#     return "Hello from Python!"
-#
-# if __name__ == "__main__":
-#     port = int(os.environ.get("PORT", 5000))
-#     app.run(host='0.0.0.0', port=port)
 
 load_dotenv()
 TOKEN = environ['DISCORD_TOKEN']
 GUILD = environ['DISCORD_GUILD']
-# user = environ['user']
-# password = environ['password']
-# host = environ['host']
-# port = environ['port']
-# database = environ['database']
 
-# connection = psycopg2.connect(user=user,
-#                               password=password,
-#                               host=host,
-#                               port=port,
-#                               database=database)
 DATABASE_URL = environ['DATABASE_URL']
-
 connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-
-
 cursor = connection.cursor()
 
 client = discord.Client()
 
 @client.event
 async def on_ready():
-    # str= "{usr} has connected to Discord!".format(usr=client.user)
-    # print (str)
     for guild in client.guilds:
         if guild.name == GUILD:
             break
