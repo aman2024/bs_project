@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from googlesearch import search
 import psycopg2
 from flask import Flask
-# from os import environ
+from os import environ
 
 #
 # app = Flask(__name__)
@@ -21,14 +21,19 @@ if __name__ == "__main__":
     app.run(host='0.0.0.0', port=port)
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_GUILD')
+TOKEN = environ['DISCORD_TOKEN']
+GUILD = environ['DISCORD_GUILD']
+user = environ['user']
+password = environ['password']
+host = environ['host']
+port = environ['port']
+database = environ['database']
 
-connection = psycopg2.connect(user="postgres",
-                              password="kirti@@1",
-                              host="127.0.0.1",
-                              port="5432",
-                              database="bs_db")
+connection = psycopg2.connect(user=user,
+                              password=password,
+                              host=host,
+                              port=port,
+                              database=database)
 
 
 cursor = connection.cursor()
