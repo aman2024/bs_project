@@ -23,17 +23,20 @@ from os import environ
 load_dotenv()
 TOKEN = environ['DISCORD_TOKEN']
 GUILD = environ['DISCORD_GUILD']
-user = environ['user']
-password = environ['password']
-host = environ['host']
-port = environ['port']
-database = environ['database']
+# user = environ['user']
+# password = environ['password']
+# host = environ['host']
+# port = environ['port']
+# database = environ['database']
 
-connection = psycopg2.connect(user=user,
-                              password=password,
-                              host=host,
-                              port=port,
-                              database=database)
+# connection = psycopg2.connect(user=user,
+#                               password=password,
+#                               host=host,
+#                               port=port,
+#                               database=database)
+DATABASE_URL = environ['DATABASE_URL']
+
+connection = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 
 cursor = connection.cursor()
